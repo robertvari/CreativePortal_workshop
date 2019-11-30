@@ -1,0 +1,31 @@
+.navbar{
+    background-color: #151515;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    padding: 10px 20px;
+}
+
+.creative{
+    color: #13aff0;
+}
+
+.logo_text{
+    font-size: 40px;
+    margin-right: 20px;
+    color: white;
+}
+
+.form_icon{
+    font-size: 23px;
+}
+
+.nav_items{
+    display: flex;
+    align-items: center;
+}
+
+.nav_items a:not(:last-child){
+    margin-right: 20px;
+}
