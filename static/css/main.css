@@ -21,3 +21,7 @@ a{
 a:hover{
     color: white;
 }
+
+.content_container{
+    padding: 60px 20px;
+}
