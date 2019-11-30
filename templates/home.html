@@ -18,5 +18,7 @@
 
         <hr>
 
-        <div class="title_text"><a href=""> <span class="creative"> Join today </span> </a> and share your best moments!</div>
+        {% if not user.is_authenticated %}
+            <div class="title_text"><a href=""> <span class="creative"> Join today </span> </a> and share your best moments!</div>
+        {% endif %}
 {% endblock body %}
