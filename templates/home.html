@@ -6,7 +6,10 @@
         <div class="title_text">Welcome on <span class="creative">Creative</span>Portal</div>
 
         <div class="top_row_container">
-
+            {% for post in top_row_list %}
+                <div class="post_item" style="background-image: url({{ post.image }})">
+                </div>
+            {% endfor %}
         </div>
 
         <hr>
