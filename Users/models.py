@@ -21,9 +21,9 @@ class Profile(models.Model):
         return self.user.username
 
 
-@receiver(post_save, settings.AUTH_USER_MODEL)
-def create_or_update_user_profile(sender, user_model, created, **kwargs):
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=user_model)
+        Profile.objects.create(user=instance)
 
-    user_model.profile.save()
+    instance.profile.save()

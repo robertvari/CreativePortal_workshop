@@ -67,3 +67,12 @@
 .field_error ul{
     list-style-type: none;
 }
+
+.profile_image_container {
+    width: 300px;
+    height: 300px;
+    align-self: center;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+}
