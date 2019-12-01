@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+
+{% block title %} Profile: {{ user }} {% endblock title %}
+
+{% block body %}
+
+    <form method="post" class="input_form">
+        {% csrf_token %}
+
+        <div class="form_title"><span class="creative">{{ user }}</span> Profile</div>
+        <hr>
+
+        <input class="text_input" type="text" value="{{ user.first_name }}" placeholder="First Name">
+        <input class="text_input" type="text" value="{{ user.last_name }}" placeholder="Last Name">
+        <input class="text_input" type="email" value="{{ user.email }}" placeholder="Email">
+
+        <hr>
+        <button type="submit" class="button">Update Profile</button>
+    </form>
+
+{% endblock body %}
