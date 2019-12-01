@@ -1,7 +1,7 @@
 <div class="navbar">
 
     <div class="nav_items">
-        <a href="" class="logo_text"> <span class="creative">Creative</span>Poral </a>
+        <a href="{% url 'home' %}" class="logo_text"> <span class="creative">Creative</span>Poral </a>
 
         {% if user.is_authenticated %}
             <a href=""><i class="fas fa-thumbs-up form_icon"></i> Community</a>
@@ -15,10 +15,10 @@
 
     <div class="nav_items">
         {% if user.is_authenticated %}
-            <a href=""><i class="fas fa-user form_icon"></i> Profile</a>
+            <a href=""><i class="fas fa-user form_icon"></i> {{ user }}</a>
             <a href="{% url 'logout' %}"><i class="fas fa-sign-in-alt form_icon"></i> Sign Out</a>
         {% else %}
-            <a href=""><i class="fas fa-user-plus form_icon"></i> Sign Up</a>
+            <a href="{% url 'register' %}"><i class="fas fa-user-plus form_icon"></i> Sign Up</a>
             <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt form_icon"></i> Sign In</a>
         {% endif %}
     </div>
