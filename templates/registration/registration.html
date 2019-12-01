@@ -3,12 +3,43 @@
 {% block title %} Register {% endblock title %}
 
 {% block body %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Register</button>
-    </form>
+    <form method="post" class="input_form">
+        <div class="form_title"> <span class="creative">Creative</span>Portal: Registration</div>
+        <hr>
 
-    <p>Already have an account? <a href="{% url 'login' %}">Sign In</a></p>
+        {% csrf_token %}
+
+        <div class="help_text">{{ form.username.help_text }}</div>
+        {% for error in form.username.errors %}
+            <div class="field_error">
+                {{ form.username.errors }}
+            </div>
+        {% endfor %}
+        <input class="text_input" type="text" name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}" value="" placeholder="Username">
+
+    
+        <div class="help_text">{{ form.password1.help_text }}</div>
+        {% for error in form.password1.errors %}
+            <div class="field_error">
+                {{ form.password1.errors }}
+            </div>
+        {% endfor %}
+        <input class="text_input" type="password" name="{{ form.password1.html_name }}" id="{{ form.password1.id_for_label }}" value="" placeholder="Password">
+
+    
+        <div class="help_text">{{ form.password2.help_text }}</div>
+        {% for error in form.password2.errors %}
+            <div class="field_error">
+                {{ form.password2.errors }}
+            </div>
+        {% endfor %}
+        <input class="text_input" type="password" name="{{ form.password2.html_name }}" id="{{ form.password2.id_for_label }}" value="" placeholder="Password again">
+
+
+        <hr>
+        <button type="submit" class="button">Register</button>
+
+        <p class="help_text" style="align-self: center">Already have an account? <a href="{% url 'login' %}">Sign In</a></p>
+    </form>
 
 {% endblock body %}
