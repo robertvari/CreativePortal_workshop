@@ -3,17 +3,19 @@
 {% block title %} Sign In {% endblock title %}
 
 {% block body %}
-    <form method="post">
+    <form method="post" class="input_form">
         {% csrf_token %}
 
 
-        <input type="text" name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}" value="" placeholder="Username">
+        <input class="text_input" type="text" name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}" value="" placeholder="Username">
 
-        <input type="password" name="{{ form.password.html_name }}" id="{{ form.password.id_for_label }}" value="" placeholder="Password">
+        <input class="text_input" type="password" name="{{ form.password.html_name }}" id="{{ form.password.id_for_label }}" value="" placeholder="Password">
 
+        <hr>
+        <button type="submit" class="button">Sign In</button>
 
-        <button type="submit">Sign In</button>
+        <a href="" class="help_text" style="align-self: center">Forgot your password?</a>
     </form>
 
-    <a href="">Forgot your password?</a>
+
 {% endblock body %}

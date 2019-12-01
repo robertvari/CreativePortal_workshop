@@ -1,5 +1,6 @@
 @import "navbar.css";
 @import "image_grid.css";
+@import "form.css";
 
 *{
     box-sizing: border-box;
