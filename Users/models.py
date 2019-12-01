@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from PIL import Image
 
 
 class Profile(models.Model):
@@ -16,6 +17,17 @@ class Profile(models.Model):
     twitter = models.URLField(blank=True)
     instagram = models.URLField(blank=True)
     linkedin = models.URLField(blank=True)
+
+    def save(self, *args, **kwargs):
+        super(Profile, self).save(*args, **kwargs)
+
+        if self.profile_pic:
+            image_path = self.profile_pic.path
+            img = Image.open(image_path)
+
+            if img.size[0] > 300 or img.size[1] > 300:
+                img.thumbnail((300, 300))
+                img.save(image_path)
 
     def __str__(self):
         return self.user.username
