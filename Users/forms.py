@@ -1,10 +1,10 @@
 from django import forms
-from .models import Profile
+from .models import CreativeUser
 
 
 class ProfileForm(forms.ModelForm):
     class Meta:
-        model = Profile
+        model = CreativeUser
         fields = (
             "full_name",
             "profile_pic",

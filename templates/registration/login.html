@@ -6,31 +6,9 @@
     <form method="post" class="input_form">
         <div class="form_title"> <span class="creative">Creative</span>Portal: Sign In</div>
         <hr>
-
-            {% for error in form.non_field_errors  %}
-                <div class="errors">
-                    {{ error }}
-                </div>
-            {% endfor %}
-
-
         {% csrf_token %}
 
-        {% for error in form.username.errors %}
-            <div class="field_error">
-                {{ form.username.errors }}
-            </div>
-        {% endfor %}
-
-        <input class="text_input" type="text" name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}" value="" placeholder="Username">
-
-
-        {% for error in form.password.errors %}
-            <div class="field_error">
-                {{ form.password.errors }}
-            </div>
-        {% endfor %}
-        <input class="text_input" type="password" name="{{ form.password.html_name }}" id="{{ form.password.id_for_label }}" value="" placeholder="Password">
+        {{ form.as_p }}
 
         <hr>
         <button type="submit" class="button">Sign In</button>

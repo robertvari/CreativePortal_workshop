@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'Users.apps.UsersConfig',
 ]
 
+AUTH_USER_MODEL = 'Users.CreativeUser'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
