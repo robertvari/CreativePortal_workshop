@@ -76,3 +76,13 @@
     background-position: center;
     background-size: cover;
 }
+
+.center_subtext{
+    text-align: center;
+    font-size: 22px;
+}
+
+.button_layout{
+    display: flex;
+    justify-content: flex-end;
+}
