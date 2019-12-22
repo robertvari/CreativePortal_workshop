@@ -42,6 +42,9 @@ class CreativeUserManager(BaseUserManager):
 
 
 class CreativeUser(AbstractBaseUser):
+    # for allauth
+    username = models.CharField(max_length=200, blank=True)
+
     # required for registration
     email = models.EmailField(max_length=200, unique=True)
     USERNAME_FIELD = 'email'

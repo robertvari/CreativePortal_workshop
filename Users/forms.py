@@ -1,5 +1,17 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 from .models import CreativeUser
+
+
+class CustomUserSignupForm(UserCreationForm):
+    class Meta:
+        model = CreativeUser
+        fields = (
+            'email',
+            'full_name',
+            'password1',
+            'password2'
+        )
 
 
 class ProfileForm(forms.ModelForm):
