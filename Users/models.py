@@ -1,6 +1,9 @@
 from django.db import models
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from PIL import Image
+import os
 
 
 class CreativeUserManager(BaseUserManager):
@@ -106,3 +109,9 @@ class CreativeUser(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
+
+
+@receiver(post_delete, sender=CreativeUser)
+def file_cleanup(sender, instance, **kwargs):
+    if instance.profile_pic:
+        os.remove(instance.profile_pic.path)
