@@ -1,0 +1,20 @@
+{% extends '_base.html' %}
+
+{% block title %} Register {% endblock title %}
+
+{% block body %}
+    <form method="post" class="input_form">
+        <div class="form_title"> <span class="creative">Creative</span>Portal: Registration</div>
+        <hr>
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <hr>
+        <button type="submit" class="button">Register</button>
+
+        <p class="help_text" style="align-self: center">Already have an account? <a href="{% url 'account_login' %}">Sign In</a></p>
+    </form>
+
+{% endblock body %}
