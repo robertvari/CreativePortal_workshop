@@ -10,12 +10,26 @@
         <div class="form_title"><span class="creative">{{ user }}</span> Profile</div>
         <hr>
 
+        <div class="user_pic" style="background-image: url({{ user.profile_pic.url }})"></div>
+
         {% if user.profile.profile_pic %}
             <div class="profile_image_container" style="background-image: url({{ user.profile.profile_pic.url }})"></div>
         {% endif %}
 
+        <input type="email" name="email" placeholder="Email" value="{{ form.email.value }}" required class="text_input">
+        <input type="text" name="full_name" placeholder="Full Name" value='{{ form.full_name.value }}' required class="text_input">
 
-        {{ form.as_p }}
+        <textarea name="bio" class="text_input" placeholder="Bio">{{ form.bio.value }}</textarea>
+
+        <input type="text" name="location" placeholder="Location" value='{{ form.location.value }}' class="text_input">
+
+        <input type="date" name="birth_date" placeholder="Birth Date" value='{{ form.birth_date.value }}' class="text_input">
+
+        <input type="text" name="facebook" placeholder="Facebook" value='{{ form.facebook.value }}' class="text_input">
+        <input type="text" name="twitter" placeholder="Twitter" value='{{ form.twitter.value }}' class="text_input">
+        <input type="text" name="instagram" placeholder="Instagram" value='{{ form.instagram.value }}' class="text_input">
+        <input type="text" name="linkedin" placeholder="Linkedin" value='{{ form.linkedin.value }}' class="text_input">
+{#        {{ form.as_p }}#}
 
         <hr>
         <button type="submit" class="button">Update Profile</button>

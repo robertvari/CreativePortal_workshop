@@ -18,6 +18,7 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = CreativeUser
         fields = (
+            "email",
             "full_name",
             "profile_pic",
             "bio",

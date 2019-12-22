@@ -1,0 +1,14 @@
+.user_pic{
+    width: 40px;
+    height: 40px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+}
+
+.input_form .user_pic{
+    width: 200px;
+    height: 200px;
+    align-self: center;
+}
