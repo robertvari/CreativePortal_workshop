@@ -1,10 +1,11 @@
 from django.db import models
-from django.db.models.signals import post_delete
+from django.db.models.signals import post_delete, pre_save
 from django.dispatch import receiver
+from django.utils.text import slugify
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.conf import settings
 from PIL import Image
-import os, shutil
+import os, shutil, time
 
 
 def photo_directory_path(instance, filename):
@@ -33,6 +34,20 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="comments")
+    comment = models.TextField()
+
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('-created_on',)
+
+    def __str__(self):
+        return f'Comment: {self.comment} by {self.user}'
 
 
 class CreativeUserManager(BaseUserManager):
@@ -141,6 +156,12 @@ class CreativeUser(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
+
+
+@receiver(pre_save, sender=Post)
+def slug_generator(sender, instance, **kwargs):
+    if not instance.slug:
+        instance.slug = f'{slugify(instance.title)}-{int(time.time())}'
 
 
 @receiver(post_delete, sender=CreativeUser)
