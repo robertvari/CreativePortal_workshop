@@ -37,5 +37,18 @@ class CreativeUserAdmin(UserAdmin):
 
 admin.site.register(CreativeUser, CreativeUserAdmin)
 
-admin.site.register(Post)
+
+class PostAdmin(admin.ModelAdmin):
+    list_display = (
+        'title',
+        'author',
+        'photo',
+        'picked',
+        'create_on',
+    )
+
+    list_editable = ('picked',)
+
+
+admin.site.register(Post, PostAdmin)
 admin.site.register(Comment)

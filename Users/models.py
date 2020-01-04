@@ -47,7 +47,7 @@ class Comment(models.Model):
         ordering = ('-created_on',)
 
     def __str__(self):
-        return f'Comment: {self.comment} by {self.user}'
+        return f'Comment: {self.comment[:50]}... by {self.user}'
 
 
 class CreativeUserManager(BaseUserManager):
