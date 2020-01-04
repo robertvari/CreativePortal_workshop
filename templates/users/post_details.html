@@ -1,0 +1,8 @@
+{% extends '_base.html' %}
+
+{% block title %} {{ post.title }} {% endblock title %}
+
+{% block body %}
+        <h1>{{ post.title }}</h1>
+        <img src="{{ post.photo.url }}" alt="" style="width: 500px">
+{% endblock body %}
