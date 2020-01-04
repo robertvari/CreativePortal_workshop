@@ -2,8 +2,37 @@ from django.db import models
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.conf import settings
 from PIL import Image
-import os
+import os, shutil
+
+
+def photo_directory_path(instance, filename):
+    return f'posts/{instance.author}/{filename}'
+
+
+class Post(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='posts')
+
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    photo = models.ImageField(upload_to=photo_directory_path)
+
+    # social feaures
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name="likes")
+    picked = models.BooleanField(default=False)
+    views = models.PositiveIntegerField(default=0)
+
+    slug = models.SlugField(max_length=200, blank=True)
+
+    updated_on = models.DateTimeField(auto_now=True)
+    create_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('-create_on',)
+
+    def __str__(self):
+        return self.title
 
 
 class CreativeUserManager(BaseUserManager):
@@ -118,3 +147,13 @@ class CreativeUser(AbstractBaseUser):
 def file_cleanup(sender, instance, **kwargs):
     if instance.profile_pic:
         os.remove(instance.profile_pic.path)
+
+
+@receiver(post_delete, sender=Post)
+def photo_cleanup(sender, instance, **kwargs):
+    if instance.photo:
+        user_folder = os.path.dirname(instance.photo.path)
+        os.remove(instance.photo.path)
+
+        if not os.listdir(user_folder):
+            shutil.rmtree(user_folder, ignore_errors=True)

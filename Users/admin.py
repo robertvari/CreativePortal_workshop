@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import CreativeUser
+from .models import CreativeUser, Post
 
 
 class CreativeUserAdmin(UserAdmin):
@@ -36,3 +36,5 @@ class CreativeUserAdmin(UserAdmin):
 
 
 admin.site.register(CreativeUser, CreativeUserAdmin)
+
+admin.site.register(Post)
