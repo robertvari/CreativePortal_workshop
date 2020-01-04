@@ -4,10 +4,11 @@
         <a href="{% url 'home' %}" class="logo_text"> <span class="creative">Creative</span>Poral </a>
 
         {% if user.is_authenticated %}
-            <a href=""><i class="fas fa-thumbs-up form_icon"></i> Community</a>
-            <a href=""><i class="fas fa-comments form_icon"></i> Trending</a>
-            <a href=""><i class="fas fa-rss form_icon"></i> Latest</a>
-            <a href=""><i class="fas fa-star form_icon"></i> Picks</a>
+            <a href="{% url 'post_filters' %}?sorting=community"><i class="fas fa-thumbs-up form_icon"></i> Community</a>
+            <a href="{% url 'post_filters' %}?sorting=trending"><i class="fas fa-comments form_icon"></i> Trending</a>
+            <a href="{% url 'post_filters' %}?sorting=latest"><i class="fas fa-rss form_icon"></i> Latest</a>
+            <a href="{% url 'post_filters' %}?sorting=picks"><i class="fas fa-star form_icon"></i> Picks</a>
+
             <a href=""><i class="fas fa-users form_icon"></i> Users</a>
             <a href=""><i class="fas fa-cloud-upload-alt form_icon"></i> Upload</a>
         {% endif %}
