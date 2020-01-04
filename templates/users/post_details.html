@@ -3,6 +3,70 @@
 {% block title %} {{ post.title }} {% endblock title %}
 
 {% block body %}
-        <h1>{{ post.title }}</h1>
-        <img src="{{ post.photo.url }}" alt="" style="width: 500px">
+        <div class="post_detail_container">
+
+
+            <img src="{{ post.photo.url }}" alt="" class="post_photo">
+
+            <div class="post_sidebar">
+                <div class="post_title creative">{{ post.title }}</div>
+
+                <div class="post_author_head">
+
+                    {% if post.author.profile_pic %}
+                        <div class="user_pic" style="background-image: url({{ post.author.profile_pic.url }}); margin-right: 10px"></div>
+                    {% else %}
+                        <i class="fas fa-user form_icon"></i>
+                    {% endif %}
+
+                    <div class="author_name">
+                        <div>{{ post.author }}</div>
+                        <div class="help_text">{{ post.author.bio }}</div>
+                    </div>
+                </div>
+
+                <div class="post_description">
+                    <p>{{ post.description }}</p>
+                    <div class="help_text" style="align-self: flex-end">{{ post.create_on|timesince }} ago</div>
+                </div>
+
+                <div class="social_icon_layouts">
+                    <div><i class="fas fa-thumbs-up"></i> {{ post.likes.all|length }} Likes</div>
+                    <div><i class="far fa-eye"></i> {{ post.views }} Views</div>
+                    <div><i class="fas fa-comments"></i> {{ post.comments.all|length }} Comments</div>
+                </div>
+
+            <div class="comments_layout">
+                <form action="" style="display: flex; flex-direction: column">
+                    <textarea name="comment" id="" cols="30" rows="3" placeholder="Your comment..."></textarea>
+                    <button type="submit" class="button comment_button">Post Comment</button>
+                </form>
+            
+                <div id="comment_list_layout">
+                    {% for comment in post.comments.all %}
+                        <div class="comment_item">
+                            <div class="post_author_head">
+
+                                {% if comment.user.profile_pic %}
+                                    <div class="user_pic" style="background-image: url({{ comment.user.profile_pic.url }}); margin-right: 10px; width: 30px; height: 30px"></div>
+                                {% else %}
+                                    <i class="fas fa-user form_icon"></i>
+                                {% endif %}
+
+                                <div class="author_name">
+                                    <div>{{ comment.user }}</div>
+                                    <div class="help_text">{{ comment.user.bio }}</div>
+                                </div>
+                            </div>
+
+                        <div class="comment_text">{{ comment.comment }}</div>
+                        <div class="help_text" style="align-self: flex-end">{{ comment.created_on|timesince }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+            </div>
+        </div>
 {% endblock body %}

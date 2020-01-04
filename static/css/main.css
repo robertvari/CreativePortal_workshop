@@ -2,6 +2,7 @@
 @import "image_grid.css";
 @import "form.css";
 @import "user.css";
+@import "post_details.css";
 
 *{
     box-sizing: border-box;

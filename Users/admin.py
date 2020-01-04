@@ -51,4 +51,14 @@ class PostAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Post, PostAdmin)
-admin.site.register(Comment)
+
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = (
+        'post',
+        'user',
+        'comment'
+    )
+
+
+admin.site.register(Comment, CommentAdmin)
