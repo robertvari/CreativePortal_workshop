@@ -50,7 +50,7 @@ class PostUploadView(LoginRequiredMixin, CreateView):
     )
 
     template_name = 'users/post_upload.html'
-    login_url = reverse_lazy("login")
+    login_url = reverse_lazy("account_login")
 
     def form_valid(self, form):
         form.instance.author = self.request.user

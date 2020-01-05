@@ -5,7 +5,21 @@
 {% block body %}
     <form method="post" class="input_form" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+
+        <input type="text" name="title" class="text_input" placeholder="Title">
+
+        <div id="image_drop_area">
+            <div id="drop_text">Drop your photo here (jpg)</div>
+            <img src="" alt="" id="image_canvas">
+        </div>
+
+
+        <input type="file" name="photo" accept="image/jpeg">
+
+
+
+
+        <textarea name="description" id="" cols="30" rows="10"></textarea>
 
         <button type="submit" class="button">Upload</button>
     </form>
