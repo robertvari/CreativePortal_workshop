@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load static %}
 
 {% block title %} Upload {% endblock title %}
 
@@ -14,13 +15,13 @@
         </div>
 
 
-        <input type="file" name="photo" accept="image/jpeg">
-
-
+        <input type="file" name="photo" accept="image/jpeg" id="image_file_input" hidden>
 
 
         <textarea name="description" id="" cols="30" rows="10"></textarea>
 
         <button type="submit" class="button">Upload</button>
     </form>
+
+    <script src="{% static 'js/image_drop.js' %}"></script>
 {% endblock body %}
