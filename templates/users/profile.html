@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load static %}
 
 {% block title %} Profile: {{ user }} {% endblock title %}
 
@@ -10,11 +11,19 @@
         <div class="form_title"><span class="creative">{{ user }}</span> Profile</div>
         <hr>
 
-        <div class="user_pic" style="background-image: url({{ user.profile_pic.url }})"></div>
+{#        <div class="user_pic" style="background-image: url({{ user.profile_pic.url }})"></div>#}
 
-        {% if user.profile.profile_pic %}
-            <div class="profile_image_container" style="background-image: url({{ user.profile.profile_pic.url }})"></div>
-        {% endif %}
+        <div id="image_drop_area" style="max-width: 300px; align-self: center">
+            {% if user.profile_pic %}
+                <img src="{{ user.profile_pic.url }}" alt="" id="image_canvas" style="display: block">
+            {% else %}
+                <div id="drop_text">Drop your photo here (jpg)</div>
+                <img src="" alt="" id="image_canvas">
+            {% endif %}
+        </div>
+
+        <input type="file" name="profile_pic" accept="image/jpeg" id="image_file_input" hidden>
+
 
         <input type="email" name="email" placeholder="Email" value="{{ form.email.value }}" required class="text_input">
         <input type="text" name="full_name" placeholder="Full Name" value='{{ form.full_name.value }}' required class="text_input">
@@ -37,4 +46,5 @@
         <a href="{% url 'account_set_password' %}" class="help_text" style="align-self: center">Change password</a>
     </form>
 
+<script src="{% static 'js/image_drop.js' %}"></script>
 {% endblock body %}

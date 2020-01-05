@@ -30,7 +30,11 @@ function drag_leave_event() {
 
 function drop_event(event) {
     image_drop_area.style.backgroundColor = 'transparent';
-    drop_text.style.display = 'none';
+
+    if(drop_text){
+        drop_text.style.display = 'none';
+    }
+
     image_canvas.style.display = 'block';
 
     // get files from drop event
