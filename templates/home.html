@@ -8,7 +8,9 @@
         <div class="top_row_container">
             {% for post in top_row_list %}
                 <a href="{% url 'post_details' slug=post.slug %}">
-                    <div class="post_item" style="background-image: url({{ post.photo.url }})"></div>
+                    <div class="post_thumbnail_container" style="border-radius: 0px">
+                        <div class="post_thumbnail" style="background-image: url({{ post.photo.url }})"></div>
+                    </div>
                 </a>
 
             {% endfor %}
