@@ -47,7 +47,7 @@ function comment_element(data, parent_element){
     create_element("text", author_bio_div, false, false, data["user"]["bio"]);
 
     // comment text
-    let commen_element = create_element("div", comment_item);
+    let commen_element = create_element("div", comment_item, 'comment_text');
     commen_element.style.fontSize = "14px";
     create_element("text", commen_element, false, false, data["comment"]);
 
@@ -58,6 +58,45 @@ function comment_element(data, parent_element){
     create_element("text", comment_date, false, false, data["created_on"]);
 
     return comment_item
+}
+
+
+// handle likes
+function submit_like(e, post_pk) {
+    let like_button = document.querySelector('#like_button');
+    let button_value;
+
+    if(like_button.className.includes("creative")){
+        like_button.className = 'like_button';
+        button_value = 0;
+    }else{
+        like_button.className = 'like_button creative'
+        button_value = 1;
+    }
+
+    let like_text_element = document.querySelector('#like_button_text');
+    let current_likes = parseInt(like_text_element.textContent,10);
+    if(button_value === 1){
+        current_likes += 1
+    }else{
+        current_likes -= 1
+    }
+
+    like_text_element.textContent = current_likes + ' Likes'
+
+    // submit with AJAX
+    $.ajax({
+        url:"/ajax/like_submit/",
+        data:{
+            "value": button_value,
+            "post_pk": post_pk,
+        },
+        dataType: 'json',
+
+        success: function (data) {}
+
+    });
+
 }
 
 

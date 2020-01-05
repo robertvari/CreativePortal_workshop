@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="social_icon_layouts">
-                    <div><i class="fas fa-thumbs-up"></i> {{ post.likes.all|length }} Likes</div>
+                    <div class="like_button {% if user in post.likes.all %}creative{% endif %}" onclick="submit_like(event, {{ post.pk }})" id="like_button"><i class="fas fa-thumbs-up"></i> <span id="like_button_text">{{ post.likes.all|length }} Likes</span></div>
                     <div><i class="far fa-eye"></i> {{ post.views }} Views</div>
                     <div><i class="fas fa-comments"></i> {{ post.comments.all|length }} Comments</div>
                 </div>
@@ -49,7 +49,7 @@
                             <div class="post_author_head">
 
                                 {% if comment.user.profile_pic %}
-                                    <div class="user_pic" style="background-image: url({{ comment.user.profile_pic.url }}); margin-right: 10px; width: 30px; height: 30px"></div>
+                                    <div class="user_pic" style="background-image: url({{ comment.user.profile_pic.url }}); margin-right: 10px;"></div>
                                 {% else %}
                                     <i class="fas fa-user form_icon"></i>
                                 {% endif %}

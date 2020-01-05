@@ -69,3 +69,11 @@ textarea {
     justify-content: space-between;
     font-size: 13px;
 }
+
+.like_button {
+    cursor: pointer;
+}
+
+.like_button:hover {
+    color: #13aff0;
+}

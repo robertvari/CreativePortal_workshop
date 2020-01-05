@@ -37,6 +37,18 @@ def submit_comment_view(request):
     return JsonResponse(serialized_comment)
 
 
+def submit_like_view(request):
+    value = int(request.GET.get("value"))
+    post = Post.objects.get(pk=request.GET.get("post_pk"))
+    user = request.user
+
+    if value:
+        post.likes.add(user)
+    else:
+        post.likes.remove(user)
+    post.save()
+
+    return JsonResponse({})
 
 class SignUpView(CreateView):
     form_class = UserCreationForm
