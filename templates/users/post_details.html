@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load static %}
 
 {% block title %} {{ post.title }} {% endblock title %}
 
@@ -38,8 +39,8 @@
 
             <div class="comments_layout">
                 <form action="" style="display: flex; flex-direction: column">
-                    <textarea name="comment" id="" cols="30" rows="3" placeholder="Your comment..."></textarea>
-                    <button type="submit" class="button comment_button">Post Comment</button>
+                    <textarea name="comment" id="post_comment_field" cols="30" rows="3" placeholder="Your comment..."></textarea>
+                    <button type="submit" class="button comment_button" onclick="submit_comment(event, {{ post.pk }})">Post Comment</button>
                 </form>
             
                 <div id="comment_list_layout">
@@ -69,4 +70,6 @@
 
             </div>
         </div>
+
+    <script src="{% static 'js/ajax_functions.js' %}"></script>
 {% endblock body %}

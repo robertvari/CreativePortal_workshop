@@ -40,6 +40,13 @@ class PostDetailsView(DetailView):
     template_name = 'users/post_details.html'
     context_object_name = "post"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        self.object.views = self.object.views + 1
+        self.object.save()
+
+        return context
 
 class PostUploadView(LoginRequiredMixin, CreateView):
     model = Post
