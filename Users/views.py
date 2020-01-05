@@ -18,4 +18,5 @@ class ProfileView(LoginRequiredMixin, UpdateView):
     form_class = ProfileForm
     template_name = "users/profile.html"
     success_url = reverse_lazy("home")
+
     login_url = reverse_lazy("login")
