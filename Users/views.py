@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.http import JsonResponse
+from django.utils.timesince import timesince
 
 from .forms import ProfileForm
 from .models import CreativeUser, Post, Comment
@@ -22,7 +23,18 @@ def submit_comment_view(request):
     )
     new_comment.save()
 
-    return JsonResponse({"greeting": "Hello there!"})
+    serialized_comment = {
+        'user': {
+            'profile_pic': user.profile_pic.url if user.profile_pic else None,
+            'user': str(user),
+            'bio': user.bio,
+        },
+
+        "comment": new_comment.comment,
+        "created_on": f'{timesince(new_comment.created_on)} ago',
+    }
+
+    return JsonResponse(serialized_comment)
 
 
 
