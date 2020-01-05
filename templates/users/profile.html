@@ -4,14 +4,9 @@
 {% block title %} Profile: {{ user }} {% endblock title %}
 
 {% block body %}
-
-    <form method="post" class="input_form" enctype="multipart/form-data">
+    <div class="profile_layout">
+        <form method="post" class="profile_form" enctype="multipart/form-data">
         {% csrf_token %}
-
-        <div class="form_title"><span class="creative">{{ user }}</span> Profile</div>
-        <hr>
-
-{#        <div class="user_pic" style="background-image: url({{ user.profile_pic.url }})"></div>#}
 
         <div id="image_drop_area" style="max-width: 300px; align-self: center">
             {% if user.profile_pic %}
@@ -41,10 +36,25 @@
 {#        {{ form.as_p }}#}
 
         <hr>
-        <button type="submit" class="button">Update Profile</button>
-
+        <button type="submit" class="button" style="align-self: center">Update Profile</button>
+        <br>
         <a href="{% url 'account_set_password' %}" class="help_text" style="align-self: center">Change password</a>
     </form>
+
+        <div class="user_conent_layout">
+            <div class="user_conetent_section">
+                <div class="section_head">My Posts</div>
+
+                {% include '_post_list_widget.html' with posts=user.posts.all %}
+            </div>
+
+            <div class="user_conetent_section">
+                <div class="section_head">My Likes</div>
+                {% include '_post_list_widget.html' with posts=user.likes.all %}
+            </div>
+        </div>
+    </div>
+
 
 <script src="{% static 'js/image_drop.js' %}"></script>
 {% endblock body %}

@@ -3,23 +3,5 @@
 {% block title %} Posts {% endblock title %}
 
 {% block body %}
-        <div class="post_list_grid">
-        
-        {% for post in posts %}
-            <a href="{% url 'post_details' slug=post.slug %}" class="post_item">
-                <div class="post_thumbnail_container">
-                    <div class="post_thumbnail" style="background-image: url({{ post.photo.url }})"></div>
-                </div>
-
-                <div class="social_icon_layouts">
-                    <div><i class="fas fa-thumbs-up"></i> {{ post.likes.all|length }}</div>
-                    <div><i class="far fa-eye"></i> {{ post.views }}</div>
-                    <div><i class="fas fa-comments"></i> {{ post.comments.all|length }}</div>
-                </div>
-
-            </a>
-        {% endfor %}
-        
-        
-        </div>
+    {% include '_post_list_widget.html' %}
 {% endblock body %}

@@ -12,3 +12,20 @@
     height: 200px;
     align-self: center;
 }
+
+.profile_layout {
+    display: grid;
+    grid-template-columns: 400px auto;
+}
+
+.profile_form {
+    display: flex;
+    flex-direction: column;
+    background-color: #151515;
+}
+
+.section_head {
+    background-color: #151515;
+    font-size: 30px;
+    padding: 10px;
+}
