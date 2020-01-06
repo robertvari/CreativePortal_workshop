@@ -90,12 +90,23 @@ WSGI_APPLICATION = 'CreativePortal.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': "CreativePortal",
+#         'HOST': 'localhost',
+#         'PORT': 27017
+#     }
+# }
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': "CreativePortal",
-        'HOST': 'localhost',
-        'PORT': 27017
+        'HOST': 'mongodb+srv://pythonsuli:testpas123@cluster0-wqaxy.gcp.mongodb.net/test?retryWrites=true&w=majority',
+        'USER': 'pythonsuli',
+        'PASSWORD': 'testpas123'
     }
 }
 
